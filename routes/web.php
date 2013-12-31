@@ -31,17 +31,18 @@ if (in_array($locale, Config::get('app.available_locales'))) {
 Route::group(['prefix' => $locale, 'middleware' => ['locale']], function () use ($locale) {
 
     /* Back-End Routes */
-    require __DIR__ . '/includes/backend.php';
+    //require __DIR__ . '/includes/backend.php';
 
     /* Front-End Routes */
     require __DIR__ . '/includes/frontend.php';
 });
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 //admin
+
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -50,9 +51,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
     //admin Panel
-    // Route::group(['middleware' => 'auth:users'] , function() {
-    //     Route::get('/',               'BrandController@index')->name('admin.dashboard');
-
-    // });
-
+    Route::group(['middleware' => 'auth:users'], function () {
+        Route::get('/', function () {
+            return view('admin.index');
+        });
+        Route::resource('/post', 'PostController');
+        Route::resource('/user', 'UserController');
+    });
 });
