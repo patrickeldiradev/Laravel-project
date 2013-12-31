@@ -12,8 +12,8 @@ class Post extends Model
 {
     protected $fillable = ['image', 'status'];
 
-    public function translation() {
-        return $this->hasOne('App\PostTranslation')->where('locale', App::getLocale() );
+    public function lang() {
+        return $this->hasOne('App\PostTranslation')->where('locale', App::getLocale() )->withDefault();
     }
     
 }

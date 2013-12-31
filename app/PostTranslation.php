@@ -9,7 +9,7 @@ class PostTranslation extends Model
     protected $fillable = ['post_id', 'title', 'description', 'locale'];
 
     public function post() {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo('App\Post')->withDefault();
     }
 
 }

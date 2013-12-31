@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App;
 use App\Post;
+use App\PostTranslation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class PostController extends Controller
 {
@@ -14,7 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with('lang')->paginate(20);
+        return view('admin.post.index', compact('posts') );
     }
 
     /**
@@ -24,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post;
+        return view('admin.post.create', compact('post') );
     }
 
     /**
@@ -35,7 +40,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Post::create( $request->all() );
+        $post->lang()->create( $request->all() );
+
+        Session::flash('success' , 'تم الاضافة بنجاح');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -57,7 +66,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.post.edit', compact('post') );       
     }
 
     /**
@@ -69,7 +78,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update( $request->all() );
+        $post->lang->updateOrCreate(
+            ['locale' => App::getLocale(), 'post_id'=> $post->id], $request->all()
+        );
+
+        Session::flash('success' , 'تم التعديل بنجاح');
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +95,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        Session::flash('success' , 'تم الحذف بنجاح');
+        return redirect()->route('post.index');
     }
 }

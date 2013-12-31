@@ -11,23 +11,29 @@
 |
 */
 
+/**
+ * Global Routes
+ * Routes that are used between both frontend and backend.
+ */
 
 
-Route::group(['prefix' => '{locale}', 'middleware' => ['locale']], function() {
-    
+
+/* Check language */
+$locale = Request::segment(1);
+if (in_array($locale, Config::get('app.available_locales'))) {
+    \App::setLocale($locale);
+} else {
+    $locale = null;
+}
 
 
-    Route::group(['prefix' => 'admin'], function($locale) {
-    
-        Route::get('/', function() {
-            return view('admin.index');
-        });
-    
-        //End Admin Prefix
-    });
+/*  Routes group  */
+Route::group( [ 'prefix' => $locale, 'middleware' => ['locale'] ] , function() use ($locale) {
 
+    /* Back-End Routes */
+    require __DIR__.'/includes/backend.php';
 
-    //End Locale Prefix
+    /* Front-End Routes */
+    require __DIR__.'/includes/frontend.php';
+
 });
-
-

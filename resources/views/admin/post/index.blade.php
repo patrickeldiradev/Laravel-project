@@ -7,16 +7,22 @@
 
         <div class="panel-heading">
             <div class="row">
-                <h3 class="col-xs-8 panel__title"> <i class="fas fa-archive"></i>  <span>العلامات التجارية</span> </h3>
+                <h3 class="col-xs-8 panel__title"> <i class="fas fa-archive"></i>  <span> Posts  </span> </h3>
                 <div class="col-xs-4 panel-header panel__btn text-right">
-                    <a href="{{ route('brand.create') }}" class="uk-button uk-button-primary"> اضافة جديد </a>
+                    <a href="{{ route('post.create') }}" class="uk-button uk-button-primary"> add new </a>
                 </div>
             </div>
         </div>
 
         <div class="panel-body">
 
-            @if( $brands->count() )
+
+            <div class="language">
+                <a href="http://127.0.0.1:8000/lang/ar" class="btn btn-success"> Arabic </a>
+                <a href="http://127.0.0.1:8000/lang/en" class="btn btn-success"> English </a>
+            </div>
+            
+            @if( $posts->count() )
                 <div class="uk-overflow-auto">
                     <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
 
@@ -27,23 +33,22 @@
                             <th scope="col"></th>
                         </thead>
                         
-                        @foreach($brands as $brand)
+                        @foreach($posts as $post)
 
                             <tr>
-                                <td>{{$brand->order}}</td>
-                                <td>{{$brand->name}}</td>
-                                <td><img class="uk-preserve-width uk-border-circle" src="{{ $brand->getImage() }}" width="40" alt=""></td>
+                                <td>{{$post->image}}</td>
+                                <td>{{$post->lang->title}}</td>
 
                                 <td width="120" class="text-right">
-                                    <a href="{{ route('brand.edit', $brand->id ) }}" class="uk-button uk-button-primary uk-button-small" title="تعديل"> <i class="fas fa-edit"></i> </a>
+                                    <a href="{{ route('post.edit', $post->id ) }}" class="uk-button uk-button-primary uk-button-small" title="تعديل"> <i class="fas fa-edit"></i> </a>
                                     <!-- This is a button toggling the modal -->
-                                    <button class="uk-button uk-button-danger uk-button-small" type="button" uk-toggle="target: #modal-confirm-delete-{{ $brand->id }}"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="uk-button uk-button-danger uk-button-small" type="button" uk-toggle="target: #modal-confirm-delete-{{ $post->id }}"><i class="fas fa-trash-alt"></i></button>
                                     <!-- This is the modal -->
-                                    <div id="modal-confirm-delete-{{ $brand->id }}" uk-modal>
+                                    <div id="modal-confirm-delete-{{ $post->id }}" uk-modal>
                                         <div class="uk-modal-dialog uk-modal-body">
                                             <button class="uk-modal-close-outside" type="button" uk-close></button>
                                             <h3 class="uk-modal-title"> هل متأكد من عملية الحذف ؟ </h3>
-                                            <form method="POST" action="{{ route('brand.destroy', $brand->id ) }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                            <form method="POST" action="{{ route('post.destroy', $post->id ) }}" accept-charset="UTF-8" enctype="multipart/form-data">
                                                 @method('DELETE')
                                                 @csrf
                                                 <p class="uk-text-right">
@@ -63,13 +68,13 @@
                     </table>
                 </div>
                 <div class="pagination-wap">
-                    {!! $brands->links() !!}
+                    {!! $posts->links() !!}
                 </div>
 
             @else
 
                 <div class="container-fluid text-center">
-                    <h4> لا يوجد  </h4>
+                    <h4> No data  </h4>
                 </div>
 
             @endif

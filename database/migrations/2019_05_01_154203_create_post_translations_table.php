@@ -23,6 +23,8 @@ class CreatePostTranslationsTable extends Migration
 
             $table->unique(['post_id','locale']);
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

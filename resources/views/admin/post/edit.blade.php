@@ -8,14 +8,21 @@
             <div class="row">
                 <h3 class="col-xs-8 panel__title"> <i class="fas fa-archive"></i>  <span>تعديل</span> </h3>
                 <div class="col-xs-4 panel-header panel__btn text-right">
-                    <a href="{{ route('brand.index') }}" class="uk-button uk-button-primary">  عرض جميع العلامات التجارية </a>
+                    <a href="{{ route('post.index') }}" class="uk-button uk-button-primary">  عرض جميع العلامات التجارية </a>
                 </div>
             </div>
         </div>
 
         <div class="panel-body">
 
-            <form method="POST" action="{{ route('brand.update' , $brand->id) }}" accept-charset="UTF-8" enctype="multipart/form-data">
+
+            <div class="language">
+                <a href="{{ route('post.edit', ['ar', $post->id]) }}" class="btn btn-success"> Arabic </a>
+                <a href="{{ route('post.edit', ['en', $post->id]) }}" class="btn btn-success"> English </a>
+            </div>
+
+
+            <form method="POST" action="{{ route('post.update' , $post->id ) }}" accept-charset="UTF-8" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -23,25 +30,21 @@
 
 
                     <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text"> الاسم  </label>
-                        <input class="uk-input {{ $errors->has('name') ? ' uk-form-danger' : '' }}" type="text" name="name" placeholder="الاسم" value="{{ $brand->name }}">
+                        <label class="uk-form-label" for="form-stacked-text"> title  </label>
+                        <input class="uk-input {{ $errors->has('title') ? ' uk-form-danger' : '' }}" type="text" name="title" placeholder="title" value="{{ $post->lang->title }}">
                     </div>
 
                     <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text"> الوصف  </label>
-                        <textarea class="uk-textarea {{ $errors->has('description') ? ' uk-form-danger' : '' }}" rows="5" name="description" placeholder="الوصف">{{ $brand->description }}</textarea>
+                        <label class="uk-form-label" for="form-stacked-text"> description  </label>
+                        <textarea class="uk-textarea {{ $errors->has('description') ? ' uk-form-danger' : '' }}" rows="5" name="description" placeholder="description">{{ $post->lang->description }}</textarea>
                     </div>
 
 
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text"> الترتيب  </label>
-                        <input  type="number" min="1" class="uk-input {{ $errors->has('order') ? ' uk-form-danger' : '' }}" name="order" value="{{ $brand->order }}">
-                    </div>
                     
                     <div class="uk-margin">
                         <label class="uk-form-label" for="form-stacked-text"> الصورة  </label>
                         <br>
-                        <img src="{{ $brand->getImage() }}" alt="" width="160">
+
                         <br>
                         <span> - Preferred Diminsion is : 150 X 150 Pixel</span> <br>
                         <span> - Max Size : 2 MB </span>
