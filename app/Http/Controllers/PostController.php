@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +46,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'title'              => 'required|required|max:191',
+            'description'        => 'max:1000000',
+            'locale'             => 'required|min:2|max:2',
+            'image'              => 'image|max:2000',
+            'status'             => 'required|numeric|max:100000',
+        ]);
+
         $post = Post::create( $request->all() );
         $post->lang()->create( $request->all() );
 

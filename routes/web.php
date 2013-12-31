@@ -37,3 +37,6 @@ Route::group( [ 'prefix' => $locale, 'middleware' => ['locale'] ] , function() u
     require __DIR__.'/includes/frontend.php';
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -38,18 +38,21 @@
                     </div>
 
                     <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text"> image  </label>
-                        <input  type="text"  class="uk-input {{ $errors->has('order') ? ' uk-form-danger' : '' }}" name="image">
+                        <label class="uk-form-label" for="form-stacked-text">  الحالة   </label>
+                        <select id="status" class="uk-select {{ $errors->has('status') ? ' uk-form-danger' : '' }}"  name="status">
+                            <option value="1" selected>متاح</option>
+                            <option value="0" >غير متاح</option>
+                        </select>
                     </div>
                     
-                    {{-- <div class="uk-margin">
+                    <div class="uk-margin">
                         <label class="uk-form-label" for="form-stacked-text"> الصورة  </label>
                         <br>
                         <span> - Preferred Diminsion is : 150 X 150 Pixel</span> <br>
                         <span> - Max Size : 2 MB </span>
                         <br>
                         <input  type="file" class="{{ $errors->has('image') ? ' uk-form-danger' : '' }}" name="image">
-                    </div> --}}
+                    </div>
 
                 </fieldset>
 

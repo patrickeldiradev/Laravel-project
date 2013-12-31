@@ -20,7 +20,7 @@
 
                 <?php $currentRoute = \Request::route()->getName(); ?>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('post.index') }}">
                         <i class="fas fa-archive"></i>
                        News
                     </a>

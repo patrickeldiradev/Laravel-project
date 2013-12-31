@@ -19,7 +19,7 @@ class CreatePostTranslationsTable extends Migration
 
             $table->string('title')->nullable();
             $table->longText('description')->nullable();
-            $table->string('locale')->index();
+            $table->string('locale', 3)->index();
 
             $table->unique(['post_id','locale']);
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
