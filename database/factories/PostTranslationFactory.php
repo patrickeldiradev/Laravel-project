@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\News;
+use App\PostTranslation;
 use Faker\Generator as Faker;
 
-$factory->define(News::class, function (Faker $faker) {
+$factory->define(PostTranslation::class, function (Faker $faker) {
     return [
         //
     ];

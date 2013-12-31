@@ -11,14 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
-//admin Panel
-Route::group(['prefix' => 'admin'] , function() {
-    Route::get('/', function() {
-        return view('admin.index');
+Route::group(['prefix' => '{locale}', 'middleware' => ['locale']], function() {
+    
+
+
+    Route::group(['prefix' => 'admin'], function($locale) {
+    
+        Route::get('/', function() {
+            return view('admin.index');
+        });
+    
+        //End Admin Prefix
     });
+
+
+    //End Locale Prefix
 });
+
+
