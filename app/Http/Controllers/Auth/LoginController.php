@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Http\Request;
+use App\Member;
+
 class LoginController extends Controller
 {
     /*
@@ -35,5 +40,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function userLogout()
+    {
+        Auth::guard('web')->logout();
+        return redirect('/');
+    }
+
+    protected function redirectTo()
+    {
+        return url()->previous();
     }
 }
