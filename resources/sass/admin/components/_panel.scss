@@ -1,0 +1,19 @@
+.fixed-panel {
+  position: fixed;
+  width: 18%;
+}
+
+.panel {
+  padding-bottom:30px;
+
+  .panel__title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    i {
+      color: $themeColor;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+
+}

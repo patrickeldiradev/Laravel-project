@@ -1,0 +1,176 @@
+.sec-padding{
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.page-padding {
+  padding-top: 25px;
+  padding-bottom: 70px;
+}
+
+
+.padd-top-50 {
+  padding-top: 50px;
+}
+
+.transition {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.full--height {
+  height: 100%;
+}
+
+.no--padding {
+  /* reset padding between col*/
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no--margin {
+  /* reset row margin */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.relative {
+  position: relative;
+}
+
+.display--flex {
+  /*To Vertical Alignment*/
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+
+.light--text,
+.light--text:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dark--text,
+.dark--text:hover {
+  color: #585858;
+}
+
+.blue--text,
+.blue--text:hover {
+  color: #5bc0de;
+}
+
+.text-xs {
+  font-size: 13px;
+}
+
+.text-lg {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.sm--btn {
+  font-size: 11px;
+  padding: 7px 10px !important;
+}
+
+.add-btn {
+  margin-bottom: 30px;
+  margin-top: 16px;
+}
+
+.divider {
+  height: 25px;
+}
+
+.divider-lg {
+  height: 60px;
+}
+
+
+
+.hover-white:hover {
+  color:#fff !important;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+
+.btn-ico:hover {
+  background: #6571d0;
+  color: #fff;
+}
+
+.v-align {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.margin-b-lg {
+  margin-bottom: 40px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-basis: 1;
+  flex-shrink: 0;
+}
+
+.border-box {
+  border: 1px solid #eee;
+  padding: 30px;
+}
+
+
+
+.section-title {
+  font-size: 38px;
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+
+.section-head {
+  margin-bottom: 40px;
+}
+
+.gray--bg {
+  background-color: #fcfcfc;
+}
+
+.bg-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-attach {
+  background-attachment: fixed;
+}
+
+.ltr {
+  direction: ltr !important;
+}
+
+.rtl {
+  direction: rtl !important;
+}

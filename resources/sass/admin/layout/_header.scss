@@ -1,0 +1,60 @@
+/* ###### Header ###### */
+
+header {
+  background-color: #212123;
+  border-top: 3px solid $themeColor;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.main-menu {
+  li {
+    display: inline-block;
+
+
+    a {
+      color: #37383a;
+      font-size: 16px;
+      padding: 36px 26px;
+      display: block;
+    }
+
+    &.active a {
+      color: #000;
+      background-color: #f1f0f0;
+    }
+
+  }
+}
+
+.user-option-btn {
+  background-color: transparent;
+  color: #fff;
+  padding: 0;
+
+  i {
+    margin-right: 8px;
+    color: $themeColor;
+  }
+}
+
+.btn-theme-solid {
+  margin-left: 10px;
+}
+
+.btn-user,
+.btn-user:focus,
+.btn-user:hover {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;;
+}

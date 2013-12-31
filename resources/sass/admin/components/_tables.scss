@@ -1,0 +1,38 @@
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  vertical-align: middle !important;
+}
+
+
+.child-question {
+}
+
+.child-question  > td {
+  padding-right: 60px !important;
+}
+.child-question  table {
+  width: 75% !important;
+
+}
+
+.child-question  table .btn.sm--btn {
+  font-size: 11px;
+  padding: 4px 7px !important;
+}
+
+table * {
+  word-wrap: break-word;
+}
+
+.label-admin {
+  background-color: #f31e10;
+  display: inline-block;
+  padding: 0 7px;
+  color: #fff;
+}
+
+.label-user {
+  background-color: #989898;
+  display: inline-block;
+  padding: 0 7px;
+  color: #fff;
+}

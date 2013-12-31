@@ -1,0 +1,31 @@
+.note-editor.note-frame .note-editing-area {
+  height: 200px;
+}
+
+.note-editor.note-frame {
+  padding: 0;
+}
+
+.select2-selection {
+  max-width: 100%;
+  width: 100%;
+  border: 0 none;
+  padding: 0 10px;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e5e5e5 !important;
+  height: 40px !important;
+
+
+  .select2-selection__rendered {
+    padding-right: 0 !important;
+    line-height: 40px !important;
+    text-align: right !important;
+  }
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 7px !important;
+  right: auto !important;
+  left: 2px !important;
+}

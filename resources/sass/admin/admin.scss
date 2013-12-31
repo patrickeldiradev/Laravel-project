@@ -1,0 +1,76 @@
+/* =======================================================
+Project  : 3Atech
+Project URI:  Local Host.
+Description: 3Atech
+Version: 1.0.
+Author: Ahmed Elattar
+Author URI: https://www.linkedin.com/in/ahmedelattar73
+===========================================================*/
+
+// 01 Libs
+@import "../lib/bootstrap.min.css";
+@import "../lib/uikit.min.css";
+
+@import "../lib/select2.min.css";
+@import "https://use.fontawesome.com/releases/v5.0.13/css/all.css";
+
+// English Font
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+// Arabic font
+@import url("https://fonts.googleapis.com/css?family=Cairo:400,600,700");
+
+/* =======================================================
+Project  : 3Atech
+Project URI:  Local Host.
+Description: Waha
+Version: 1.0.
+Author: Ahmed Elattar
+Author URI: https://www.linkedin.com/in/ahmedelattar73
+===========================================================*/
+
+
+// 01 Variables
+@import "variables";
+
+// 02 -  Reset & General Rules.
+@import "general/resets";
+
+// 03 -  Typography
+@import "general/typography";
+
+// 04 -  Helper class
+@import "general/helperclass";
+
+// 05 -  header
+@import "layout/header";
+
+// 06 -  sidebar
+@import "layout/sidebar";
+
+// 07 -  Footer
+@import "layout/footer";
+
+// 08 -  buttons
+@import "components/buttons";
+
+// 09 -  panel
+@import "components/panel";
+
+// 10 -  forms
+@import "components/forms";
+
+// 11 -  tables
+@import "components/tables";
+
+
+body {
+  background-color: #ecf0f5;
+  font-family: $arabicFont;
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
+
+
+// Responsive
+@import "responsive";

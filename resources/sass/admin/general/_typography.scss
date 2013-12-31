@@ -1,0 +1,79 @@
+body {
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: $englishFont;
+}
+
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+  outline: none;
+  color: #3d3e44;
+}
+
+
+h1 {
+  font-size: 5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $arabicFont;;
+  line-height: 1.7;
+  color: #524e4e;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #0f0f0f;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+p {
+  color: #888888;
+  line-height:  1.9;
+  font-size: 16px;
+  margin: 0 0 20px;
+}
+
+.text-lead {
+  margin-bottom: 30px;
+}
+
+.themecolor {
+  color: $themeColor;
+}
+
+
+.editor {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 3rem
+  }
+}
+
