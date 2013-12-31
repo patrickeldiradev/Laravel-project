@@ -9,7 +9,7 @@
             <div class="row">
                 <h3 class="col-xs-8 panel__title"> <i class="fas fa-archive"></i>  <span> Posts  </span> </h3>
                 <div class="col-xs-4 panel-header panel__btn text-right">
-                    <a href="{{ route('post.create') }}" class="uk-button uk-button-primary"> add new </a>
+                    <a href="{{ route('post.create') }}" class="uk-button uk-button-primary"> @lang('admin.addnew') </a>
                 </div>
             </div>
         </div>
