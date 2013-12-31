@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use Illuminate\Support\Facades\Hash;
+use App\User;
+
 class CreateUsersTable extends Migration
 {
     /**
@@ -23,6 +26,14 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        User::create([
+            'name'      => 'Super Admin',
+            'email'     => 'ahmedelattar73@gmail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password'  => Hash::make( 'ahmedelattar73@gmail.com' ),
+        ]);
+
     }
 
     /**

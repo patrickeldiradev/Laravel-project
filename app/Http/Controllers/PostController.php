@@ -11,9 +11,19 @@ use Illuminate\Support\Facades\Session;
 class PostController extends Controller
 {
 
+    protected $rules = [
+        'title'              => 'required|max:191',
+        'slug'               => 'nullable|max:191',
+        'description'        => 'max:1000000',
+        'locale'             => 'required|min:2|max:2',
+        'image'              => 'nullable|image|max:2000',
+        'status'             => 'required|numeric|max:100000',
+    ];
+
+
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth:users');
     }
     
     /**
@@ -34,8 +44,15 @@ class PostController extends Controller
      */
     public function create()
     {
-        $post = new Post;
-        return view('admin.post.create', compact('post') );
+        return view('admin.post.create', [
+            'post'          => new Post,
+            'action'        => route('post.store', [App::getLocale()]),
+            'patch'         => null,
+            'title'         => old('title'),
+            'slug'          => old('slug'),
+            'description'   =>  old('description'),
+            'status'        => old('status'),
+        ] );
     }
 
     /**
@@ -46,30 +63,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'title'              => 'required|required|max:191',
-            'description'        => 'max:1000000',
-            'locale'             => 'required|min:2|max:2',
-            'image'              => 'image|max:2000',
-            'status'             => 'required|numeric|max:100000',
-        ]);
+        $this->validate($request, $this->rules);
 
-        $post = Post::create( $request->all() );
-        $post->lang()->create( $request->all() );
+        $attributes             = $request->all();
+        $attributes['image']    = uploadImage(800, 800, 'image');
+        $attributes['slug']     = $this->createSlug($request->slug ? $request->slug : $request->title);
+        $attributes['added_by'] = auth()->id();
 
-        Session::flash('success' , 'تم الاضافة بنجاح');
+        $post = Post::create( $attributes );
+        $post->lang()->create( $attributes );
+
+        Session::flash('success' , 'Added Successfully');
         return redirect()->route('post.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
     }
 
     /**
@@ -80,7 +85,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.post.edit', compact('post') );       
+        return view('admin.post.edit', [
+            'post'          => $post,
+            'action'        => route('post.update' , $post->id ),
+            'patch'         => '<input type="hidden" name="_method" value="PATCH">',
+            'title'         => $post->lang->title ,
+            'slug'          => $post->slug,
+            'description'   =>  $post->lang->description,
+            'status'        => $post->status,
+        ] );       
     }
 
     /**
@@ -92,9 +105,18 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $post->update( $request->all() );
+        $this->validate($request, $this->rules);
+
+        $attributes                 = $request->all();
+        $attributes['updated_by']   = auth()->id();
+        $attributes['image']        = $request->image ? uploadImage(800, 800, 'image') : $post->image;
+        $attributes['slug']         = ( $request->slug === $post->slug ? $post->slug : 
+                                            $this->createSlug($request->slug ? $request->slug : $request->title)
+                                        );
+        $post->update( $attributes );
         $post->lang->updateOrCreate(
-            ['locale' => App::getLocale(), 'post_id'=> $post->id], $request->all()
+            ['locale' => App::getLocale(), 'post_id'=> $post->id], 
+            $attributes
         );
 
         Session::flash('success' , 'تم التعديل بنجاح');
@@ -113,4 +135,37 @@ class PostController extends Controller
         Session::flash('success' , 'تم الحذف بنجاح');
         return redirect()->route('post.index');
     }
+
+
+    public function createSlug($title, $id = 0)
+    {
+        // Normalize the title
+        $title = substr($title, 0, 140);
+        $slug = str_slug($title);
+
+        // Get any that could possibly be related.
+        // This cuts the queries down by doing it once.
+        $allSlugs = $this->getRelatedSlugs($slug, $id);
+        // If we haven't used it before then we are all good.
+        if (! $allSlugs->contains('slug', $slug)){
+            return $slug;
+        }
+        // Just append numbers like a savage until we find not used.
+        for ($i = 1; $i <= 10; $i++) {
+            $newSlug = $slug.'-'.$i;
+            if (! $allSlugs->contains('slug', $newSlug)) {
+                return $newSlug;
+            }
+        }
+        throw new \Exception('Can not create a unique slug');
+    }
+
+
+    protected function getRelatedSlugs($slug, $id = 0)
+    {
+        return Post::select('slug')->where('slug', 'like', $slug.'%')
+            ->where('id', '<>', $id)
+            ->get();
+    }
+
 }

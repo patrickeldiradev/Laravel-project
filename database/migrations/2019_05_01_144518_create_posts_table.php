@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('slug', 190)->unique();
             $table->string('image', 190)->nullable();
             $table->boolean('status')->default(true);
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
             $table->integer('added_by');
             $table->timestamps();
         });

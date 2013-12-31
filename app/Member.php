@@ -11,10 +11,17 @@ class Member extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    protected $fillable = [
-        'name', 'phone', 'email', 'password'
-    ];
     protected $guard = 'members';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -23,4 +30,6 @@ class Member extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+     
 }

@@ -7,7 +7,7 @@
         <title>@yield('title', config('app.name', 'title') )</title>
         <!-- Fav Icon -->
         {{-- <link href="{{ asset('dashboard/images/favicon.ico') }}" rel="shortcut icon"> --}}
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
         @yield('styles')
         <!-- ==== End StyleSheets Links =====================================-->
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        @include('partials._messages')
+                        {{-- @include('partials._messages') --}}
                     </div>
                 </div>
             </div>
